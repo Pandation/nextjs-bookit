@@ -1,7 +1,7 @@
 const Room = require("../models/room");
-const rooms = require("../data/rooms");
-
 const mongoose = require("mongoose");
+
+const rooms = require("../data/rooms");
 
 mongoose
   .connect(
@@ -17,11 +17,12 @@ mongoose
   });
 
 const seedRooms = async () => {
+  console.log(rooms)
   try {
     await Room.deleteMany();
     console.log("Rooms are deleted");
 
-    Room.insertMany(rooms);
+    await Room.insertMany(rooms);
     console.log("All rooms are added.");
   } catch (error) {
     console.log(error.message);
